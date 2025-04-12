@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Database files
+*.sqlite
+*.sqlite3
+dump.sql
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Build files
+dist/
+<<<<<<< HEAD
+coverage/
+
+gtfs.db
+=======
+coverage/
+>>>>>>> e0559d6e (2fa-expenseTracker)

@@ -1,0 +1,59 @@
+{
+  "sqlitePath": "./gtfs.db",
+  "sqliteDelete": true,
+  "ignoreDuplicates": true,
+  "agencies": [
+    {
+      "agency_key": "agency_1",
+      "path": "./data/zip1.zip",
+      "exclude": [
+        "attributions", "feed_info", "rider_categories", "areas", "booking_rules",
+        "fare_leg_rules", "fare_media", "fare_products", "fare_transfer_rules",
+        "frequencies", "levels", "location_group_stops", "location_groups",
+        "locations.geojson", "networks", "pathways"
+      ]
+    },
+    {
+      "agency_key": "agency_2",
+      "path": "./data/zip2.zip",
+      "exclude": [
+        "attributions", "feed_info", "rider_categories", "areas", "booking_rules",
+        "fare_leg_rules", "fare_media", "fare_products", "fare_transfer_rules",
+        "frequencies", "levels", "location_group_stops", "location_groups",
+        "locations.geojson", "networks", "pathways"
+      ]
+    },
+    {
+      "agency_key": "agency_3",
+      "path": "./data/zip3.zip",
+      "exclude": [
+        "attributions", "feed_info", "rider_categories", "areas", "booking_rules",
+        "fare_leg_rules", "fare_media", "fare_products", "fare_transfer_rules",
+        "frequencies", "levels", "location_group_stops", "location_groups",
+        "locations.geojson", "networks", "pathways"
+      ]
+    },
+   
+    {
+      "agency_key": "agency_5",
+      "path": "./data/zip5.zip",
+      "exclude": [
+        "attributions", "feed_info", "rider_categories", "areas", "booking_rules",
+        "fare_leg_rules", "fare_media", "fare_products", "fare_transfer_rules",
+        "frequencies", "levels", "location_group_stops", "location_groups",
+        "locations.geojson", "networks", "pathways"
+      ]
+    },
+   
+    {
+      "agency_key": "agency_7",
+      "path": "./data/zip7.zip",
+      "exclude": [
+        "attributions", "feed_info", "rider_categories", "areas", "booking_rules",
+        "fare_leg_rules", "fare_media", "fare_products", "fare_transfer_rules",
+        "frequencies", "levels", "location_group_stops", "location_groups",
+        "locations.geojson", "networks", "pathways","shapes"
+      ]
+    }
+  ]
+}
