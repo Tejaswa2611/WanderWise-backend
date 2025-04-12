@@ -116,7 +116,7 @@ app.use(express.urlencoded({ limit: "100mb", extended: true }));
 
 app.use(bodyParser.json());
 const corsOptions = {
-    origin: true,//process.env.FRONTEND_URL || 'http://localhost:3000', // frontend origin
+    origin: process.env.FRONTEND_URL || 'http://localhost:8080', // frontend origin
     credentials: true,
   };
   
