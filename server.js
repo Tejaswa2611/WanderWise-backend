@@ -34,7 +34,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: `${process.env.FRONTEND_URL}`
+    origin: `${process.env.FRONTEND_URL}`,
+    credentials: true
   }
 });
 
@@ -116,7 +117,7 @@ app.use(express.urlencoded({ limit: "100mb", extended: true }));
 
 app.use(bodyParser.json());
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || 'http://localhost:8080', // frontend origin
+    origin: process.env.FRONTEND_URL, // frontend origin
     credentials: true,
   };
   
@@ -128,8 +129,8 @@ app.use(session({
     saveUninitialized:false,
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+      secure: true,
+      sameSite: 'none'
   }
   
 })

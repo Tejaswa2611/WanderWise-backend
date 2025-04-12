@@ -172,13 +172,13 @@ const setup2FA=async(req,res)=>{
 
 const verify2FA = async (req, res) => {
     try {
-        if (!req.user || !req.user.temp_secret) {
+        if (!req.user || !req.user.twoFactorSecret) {
             return res.status(401).json({ success: false, message: "No user or secret found" });
         }
 
         const { token } = req.body;
-        const secret = req.user.temp_secret.base32;
-        console.log("testing in verify2FA")
+        const secret = req.user.twoFactorSecret;
+        console.log("testing in verify2FA");
         console.log("Token received:", token);
         console.log("Secret:", secret);
         console.log("Server time:", new Date().toISOString());
@@ -204,6 +204,7 @@ const verify2FA = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal error" });
     }
 };
+
 
 
 const reset2FA=async(req,res)=>{
