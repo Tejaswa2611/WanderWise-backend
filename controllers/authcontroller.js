@@ -178,7 +178,7 @@ const verify2FA = async (req, res) => {
 
         const { token } = req.body;
         const secret = req.user.temp_secret.base32;
-
+        console.log("testing in verify2FA")
         console.log("Token received:", token);
         console.log("Secret:", secret);
         console.log("Server time:", new Date().toISOString());
