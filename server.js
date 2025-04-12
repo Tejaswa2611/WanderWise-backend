@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 // app.use(cors());
 app.set('trust proxy', 1); 
 app.use(cors({
-  origin: 'http://localhost:8080',
+  origin: process.env.FRONTEND_URL,
   credentials: true
 }));
 
