@@ -150,24 +150,62 @@ const setup2FA=async(req,res)=>{
         })
     }
 };
-const verify2FA=async(req,res)=>{
-    const {token} = req.body;
-    const user = req.user;
+// const verify2FA=async(req,res)=>{
+//     const {token} = req.body;
+//     const user = req.user;
 
-    const verified = speakeasy.totp.verify({
-        secret: user.twoFactorSecret,
-        encoding: "base32",
-        token,
-    });
-    if(verified){
-        const jwtToken = jwt.sign({username: user.username},process.env.JWT_SECRET,
-            {expiresIn:"1hr"}
-        );
-        res.status(200).json({message:"2FA successful",token: jwtToken})
-    }else{
-        res.status(400).json({message:"Invalid 2FA token"});
+//     const verified = speakeasy.totp.verify({
+//         secret: user.twoFactorSecret,
+//         encoding: "base32",
+//         window: 2,
+//         token,
+//     });
+//     if(verified){
+//         const jwtToken = jwt.sign({username: user.username},process.env.JWT_SECRET,
+//             {expiresIn:"1hr"}
+//         );
+//         res.status(200).json({message:"2FA successful",token: jwtToken})
+//     }else{
+//         res.status(400).json({message:"Invalid 2FA token"});
+//     }
+// };
+
+const verify2FA = async (req, res) => {
+    try {
+        if (!req.user || !req.user.temp_secret) {
+            return res.status(401).json({ success: false, message: "No user or secret found" });
+        }
+
+        const { token } = req.body;
+        const secret = req.user.temp_secret.base32;
+
+        console.log("Token received:", token);
+        console.log("Secret:", secret);
+        console.log("Server time:", new Date().toISOString());
+
+        const verified = speakeasy.totp.verify({
+            secret,
+            encoding: 'base32',
+            token,
+            window: 2
+        });
+
+        console.log("TOTP verified:", verified);
+
+        if (verified) {
+            req.user.isTwoFactorAuthenticated = true;
+            await req.user.save();
+            return res.status(200).json({ success: true });
+        } else {
+            return res.status(403).json({ success: false, message: "Invalid 2FA token" });
+        }
+    } catch (err) {
+        console.error("2FA verification error:", err);
+        return res.status(500).json({ success: false, message: "Internal error" });
     }
 };
+
+
 const reset2FA=async(req,res)=>{
     try{
         const user = req.user;
